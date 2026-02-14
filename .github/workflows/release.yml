@@ -39,6 +39,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # ビルド成果物をGitHub Releaseにアップロード
+      # タグに "beta" が含まれる場合はプレリリースとして公開する
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
@@ -47,7 +48,7 @@ jobs:
             release/*.dmg
             release/*.zip
           draft: false
-          prerelease: false
-          generate_release_notes: true
+          prerelease: ${{ contains(github.ref_name, 'beta') }}
+          body_path: RELEASE_NOTES.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
