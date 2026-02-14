@@ -1,0 +1,53 @@
+# MacLean リリースワークフロー
+# タグ (v*) をプッシュすると自動的にビルドし、GitHub Releaseを作成する
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+# ワークフロー全体の権限設定
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      # リポジトリをチェックアウト
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Node.js環境をセットアップ
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # 依存パッケージをインストール
+      - name: Install dependencies
+        run: npm ci
+
+      # macOS Universal バイナリ（Intel + Apple Silicon）をビルド
+      # electron-builder が DMG と ZIP を生成する
+      - name: Build
+        run: npm run build:universal
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ビルド成果物をGitHub Releaseにアップロード
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          # release/ ディレクトリ内の DMG と ZIP をアップロード
+          files: |
+            release/*.dmg
+            release/*.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

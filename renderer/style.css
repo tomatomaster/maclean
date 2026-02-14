@@ -1,0 +1,500 @@
+/* === 基本リセット・全体スタイル === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+  overflow-x: hidden;
+}
+
+/* macOSタイトルバーのドラッグ領域 */
+.titlebar {
+  -webkit-app-region: drag;
+  height: 38px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 24px;
+}
+
+/* === ヘッダー === */
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #e94560;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #8892a4;
+  margin-top: 4px;
+}
+
+/* === フォルダ選択セクション === */
+.folder-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.selected-path {
+  font-size: 13px;
+  color: #8892a4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+/* === ボタン === */
+.btn {
+  -webkit-app-region: no-drag;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #0f3460;
+  color: #e0e0e0;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #1a4a7a;
+}
+
+.btn-accent {
+  background: #e94560;
+  color: #fff;
+}
+
+.btn-accent:hover:not(:disabled) {
+  background: #ff6b81;
+}
+
+.btn-danger {
+  background: #c0392b;
+  color: #fff;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #e74c3c;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #8892a4;
+  border: 1px solid #333;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: #2a2a4a;
+  color: #e0e0e0;
+}
+
+/* === ファイルタイプフィルター === */
+.filter-section {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  background: #16213e;
+  border-radius: 10px;
+}
+
+.filter-label {
+  font-size: 12px;
+  color: #8892a4;
+  margin-bottom: 10px;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-chip {
+  -webkit-app-region: no-drag;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8892a4;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-chip:hover {
+  background: #2a2a4a;
+  color: #e0e0e0;
+  border-color: #555;
+}
+
+.filter-chip.active {
+  background: #e94560;
+  color: #fff;
+  border-color: #e94560;
+}
+
+.filter-extensions {
+  font-size: 11px;
+  color: #666;
+  margin-top: 8px;
+  line-height: 1.5;
+  min-height: 16px;
+}
+
+/* === スキャンセクション === */
+.scan-section {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* === プログレスバー === */
+.progress-section {
+  margin-bottom: 16px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #2a2a4a;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e94560, #ff6b81);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 12px;
+  color: #8892a4;
+  margin-top: 6px;
+}
+
+/* === 統計情報 === */
+.stats-section {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  flex: 1;
+  background: #16213e;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #e94560;
+}
+
+.stat-label {
+  display: block;
+  font-size: 12px;
+  color: #8892a4;
+  margin-top: 4px;
+}
+
+/* === 一括操作 === */
+.bulk-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: #16213e;
+  border-radius: 10px;
+}
+
+.delete-count {
+  font-size: 13px;
+  color: #8892a4;
+}
+
+.bulk-spacer {
+  flex: 1;
+}
+
+/* === 結果一覧 === */
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 重複グループカード */
+.group-card {
+  background: #16213e;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #0f3460;
+  cursor: pointer;
+  user-select: none;
+}
+
+.group-header:hover {
+  background: #1a4a7a;
+}
+
+.group-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+/* 展開/折りたたみの三角アイコン */
+.group-expand-icon {
+  font-size: 10px;
+  color: #8892a4;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.group-expand-icon.expanded {
+  transform: rotate(90deg);
+}
+
+.group-badge {
+  background: #e94560;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+/* ヘッダーに表示するファイル名（太字で目立たせる） */
+.group-filename {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e0e0e0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.group-size {
+  font-size: 12px;
+  color: #8892a4;
+  flex-shrink: 0;
+}
+
+.group-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* グループごとの節約可能容量 */
+.group-saveable {
+  font-size: 12px;
+  font-weight: 600;
+  color: #27ae60;
+  white-space: nowrap;
+}
+
+/* ファイル一覧 */
+.file-list {
+  padding: 8px 0;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  transition: background 0.15s ease;
+}
+
+.file-item:hover {
+  background: #1a2744;
+}
+
+.file-item.kept {
+  border-left: 3px solid #27ae60;
+}
+
+.file-item.marked-delete {
+  border-left: 3px solid #e94560;
+  opacity: 0.7;
+}
+
+.file-checkbox {
+  -webkit-app-region: no-drag;
+  width: 18px;
+  height: 18px;
+  accent-color: #e94560;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.file-details {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ファイル名の行（名前 + 最新タグ） */
+.file-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.file-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #e0e0e0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 最新ファイルに付くタグ */
+.file-newest-tag {
+  font-size: 10px;
+  font-weight: 600;
+  color: #27ae60;
+  background: rgba(39, 174, 96, 0.15);
+  border: 1px solid rgba(39, 174, 96, 0.3);
+  padding: 1px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.file-path {
+  font-size: 13px;
+  color: #e0e0e0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-meta {
+  font-size: 11px;
+  color: #8892a4;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* === 空の状態 === */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #8892a4;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+/* === スクロールバー === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* === 削除完了メッセージ === */
+.delete-result {
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  animation: fadeIn 0.3s ease;
+}
+
+.delete-result.success {
+  background: #1a3a2a;
+  color: #27ae60;
+  border: 1px solid #27ae60;
+}
+
+.delete-result.error {
+  background: #3a1a1a;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === ツールチップ（パス全文表示） === */
+.file-path[title] {
+  cursor: default;
+}

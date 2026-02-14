@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>MacLean - 重複ファイルクリーナー</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- macOSタイトルバー用のドラッグ領域 -->
+  <div class="titlebar"></div>
+
+  <div class="container">
+    <!-- ヘッダー: フォルダ選択 -->
+    <header class="header">
+      <h1>MacLean</h1>
+      <p class="subtitle">重複ファイルクリーナー</p>
+    </header>
+
+    <!-- フォルダ選択セクション -->
+    <section class="folder-section">
+      <button id="btn-select-folder" class="btn btn-primary">
+        フォルダを選択
+      </button>
+      <span id="selected-path" class="selected-path">フォルダが選択されていません</span>
+    </section>
+
+    <!-- ファイルタイプフィルター -->
+    <section class="filter-section">
+      <p class="filter-label">対象ファイル:</p>
+      <div class="filter-chips">
+        <button class="filter-chip active" data-filter="all">すべて</button>
+        <button class="filter-chip" data-filter="image">画像</button>
+        <button class="filter-chip" data-filter="audio">音楽</button>
+        <button class="filter-chip" data-filter="video">動画</button>
+        <button class="filter-chip" data-filter="document">ドキュメント</button>
+        <button class="filter-chip" data-filter="archive">アーカイブ</button>
+      </div>
+      <p id="filter-extensions" class="filter-extensions"></p>
+    </section>
+
+    <!-- 最小ファイルサイズフィルター -->
+    <section class="filter-section">
+      <p class="filter-label">最小ファイルサイズ:</p>
+      <div class="filter-chips">
+        <button class="filter-chip size-chip active" data-min-size="0">すべて</button>
+        <button class="filter-chip size-chip" data-min-size="1048576">1MB以上</button>
+        <button class="filter-chip size-chip" data-min-size="10485760">10MB以上</button>
+        <button class="filter-chip size-chip" data-min-size="104857600">100MB以上</button>
+        <button class="filter-chip size-chip" data-min-size="1073741824">1GB以上</button>
+      </div>
+    </section>
+
+    <!-- スキャン制御セクション -->
+    <section class="scan-section">
+      <button id="btn-scan" class="btn btn-accent" disabled>
+        スキャン開始
+      </button>
+      <button id="btn-cancel" class="btn btn-danger" style="display: none;">
+        キャンセル
+      </button>
+    </section>
+
+    <!-- プログレスバー -->
+    <section id="progress-section" class="progress-section" style="display: none;">
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+      </div>
+      <p id="progress-text" class="progress-text">準備中...</p>
+    </section>
+
+    <!-- 統計情報 -->
+    <section id="stats-section" class="stats-section" style="display: none;">
+      <div class="stat-card">
+        <span class="stat-value" id="stat-groups">0</span>
+        <span class="stat-label">重複グループ</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="stat-files">0</span>
+        <span class="stat-label">重複ファイル数</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="stat-size">0 B</span>
+        <span class="stat-label">解放可能な容量</span>
+      </div>
+    </section>
+
+    <!-- 一括操作 -->
+    <section id="bulk-actions" class="bulk-actions" style="display: none;">
+      <button id="btn-delete-selected" class="btn btn-danger" disabled>
+        選択したファイルを削除（ゴミ箱へ）
+      </button>
+      <span id="delete-count" class="delete-count">0 件選択中</span>
+      <span class="bulk-spacer"></span>
+      <button id="btn-expand-all" class="btn btn-small btn-ghost">全て展開</button>
+      <button id="btn-collapse-all" class="btn btn-small btn-ghost">全て折りたたむ</button>
+    </section>
+
+    <!-- 重複ファイル一覧 -->
+    <section id="results-section" class="results-section">
+      <div id="results-list" class="results-list">
+        <!-- 結果がここに動的に挿入される -->
+      </div>
+    </section>
+
+    <!-- 空の状態 -->
+    <section id="empty-state" class="empty-state">
+      <div class="empty-icon">📁</div>
+      <p>フォルダを選択してスキャンを開始してください</p>
+    </section>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
